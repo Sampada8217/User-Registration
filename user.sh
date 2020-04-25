@@ -1,15 +1,9 @@
 #!/bin/bash -x
 shopt -s extglob
-patName="^[A-Z][a-z]{3,}$"
-patLastName="^[A-Z][a-z]{3,}$"
+patName="^[[:upper:]]{1}[a-z]{3,}$"
+patLastName="^[[:upper:]]{1}[a-z]{3,}$"
 patEmailId="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})"
 patMobileNumber="^[1-9]{2}[[:space:]]{1}[0-9]{10}$"
-patPassRule1="^[A-Za-z]{8,}$"
-patPassRule2="^(?=.*[A-Z])$"
-patPassRule3="^(?=.*\d)$"
-patPassRule4="^(?=.*[@#$%])$"
-patPassRule="^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%])[A-Za-z]{8,}$"
-
 
 function checkValidUserData()
 {
@@ -30,6 +24,17 @@ function checkValidMobiNum()
 	fi
 }
 
+function Password()
+{
+	if [[ ${#pass} -ge 8 && "$pass" == *[[:lower:]]* && "$pass" == *[[:upper:]]* && "$pass" == *[0-9]* ]]
+	then	
+		echo "Valid Password"
+	else
+		echo "Invalid Password"
+	fi
+
+}
+
 echo "Enter First Name"
 read name
 checkValidUserData $name $patName
@@ -48,4 +53,5 @@ checkValidMobiNum $mobiNum $patMobileNumber
 
 echo "Enter Password"
 read pass
-checkValidUserData $pass $patPassRule
+Password $pass
+
