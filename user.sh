@@ -16,7 +16,8 @@ patMobileNumber="^[1-9]{2}[[:space:]]{1}[0-9]{10}$"
 patPassRule1="^[A-Za-z]{8,}$"
 patPassRule2="^(?=.*[A-Z])$"
 patPassRule3="^(?=.*\d)$"
-patPassRule="^(?=.*[A-Z])(?=.*\d)[A-Za-z]{8,}$"
+patPassRule4="^(?=.*[@#$%])"
+patPassRule="^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%])[A-Za-z]{8,}$"
 
 function checkValidUserData()
 {
@@ -40,4 +41,4 @@ checkValidUserData $name $patName
 checkValidUserData $last $patLastName
 checkValidUserData $email $patEmailId
 checkValidMobiNum $mobiNum $patMobileNumber
-checkValidUserData $pass $patPassRule3
+checkValidUserData $pass $patPassRule
